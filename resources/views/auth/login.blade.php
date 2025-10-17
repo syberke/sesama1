@@ -3,13 +3,13 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card shadow-lg border-0">
+        <div class="col-md-5">
+            <div class="card">
                 <div class="card-body p-5">
-                    <div class="text-center mb-4">
-                        <img src="{{asset('image/logo.png')}}" alt="Logo Pertamina" style="height: 80px;" class="mb-3">
-                        <h3 class="fw-bold text-primary">Sistem Bansos Pendidikan</h3>
-                        <p class="text-muted">Masuk ke sistem administrasi</p>
+                    <div class="login-header">
+                        <img src="{{asset('image/logo.png')}}" alt="Logo" style="height: 70px;" class="mb-3">
+                        <h3>Selamat Datang</h3>
+                        <p>Masuk untuk mengakses sistem</p>
                     </div>
 
                     <form method="POST" action="{{ route('login') }}">
