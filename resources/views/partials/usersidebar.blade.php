@@ -3,7 +3,7 @@
         <h4>Berbagi Asa</h4>
         <h6>Menyalakan Harapan, Mewujudkan Pendidikan</h6>
         <hr class="border-light">
-        <ul class="nav flex-column text-start px-3">
+        <ul class="nav flex-column text-start px-3 ">
             <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('userdashboard') ? 'active' : '' }}" href="{{ route('userdashboard') }}">
                                 <i class="fas fa-tachometer-alt me-2"></i> Dashboard
