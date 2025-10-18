@@ -25,12 +25,12 @@
     height: 100vh;
 }
 
-/* === Struktur umum sidebar === */
+
 .sidebar .nav-link {
     display: flex;
     align-items: center;
-    gap: 8px; /* jarak antar ikon dan teks */
-    border-radius: 12px; /* bikin semua tombol tumpul */
+    gap: 8px;
+    border-radius: 12px;
     padding: 10px 14px;
     margin: 6px 10px;
     font-weight: 500;
@@ -40,32 +40,26 @@
     transition: all 0.25s ease;
 }
 
-/* Hover & aktif */
-.sidebar .nav-link:hover {
-    background-color: #f0f9f4;
-    color: var(--primary-green);
-    transform: translateX(3px);
-}
+
+
 
 .sidebar .nav-link.active {
     background-color: var(--primary-green);
     color: white !important;
     box-shadow: 0 2px 8px rgba(0, 166, 81, 0.25);
 }
-
-/* === Dropdown icon di kiri, bukan kanan === */
 .sidebar .nav-link .fa-chevron-down {
-    margin-left: auto; /* hapus ini kalau sebelumnya ada */
+    margin-left: auto;
     transform: rotate(-90deg);
     transition: transform 0.3s ease;
 }
 
-/* Saat menu terbuka, panah menghadap ke bawah */
+
 .sidebar .nav-link[aria-expanded="true"] .fa-chevron-down {
     transform: rotate(0deg);
 }
 
-/* === Logout Button (tumpul & rata kiri) === */
+
 .sidebar .nav-item.logout .nav-link {
     background-color: #dc3545;
     color: white !important;
@@ -75,10 +69,8 @@
 
 .sidebar .nav-item.logout .nav-link:hover {
     background-color: #bb2d3b;
-    transform: translateX(3px);
+ 
 }
-
-/* Hilangkan float atau text-right bawaan */
 .sidebar .nav-link i,
 .sidebar .nav-link span,
 .sidebar .nav-link {
