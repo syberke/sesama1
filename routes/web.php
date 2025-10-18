@@ -21,17 +21,22 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
+// Public Routes
 Route::get('/', function () {
-    if (Auth::check()) {
-        return redirect()->route('dashboard');
-    }
-    return redirect()->route('login');
-});
+    return view('public.home');
+})->name('home');
 
-// Hanya admin yang boleh akses route ini
+Route::get('/about', function () {
+    return view('public.about');
+})->name('about');
+
+Route::get('/program', function () {
+    return view('public.program');
+})->name('program');
+
+// Admin Routes
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/home', [DashboardController::class, 'index'])->name('home');
     Route::get('/recipients/print-all', [RecipientController::class, 'printAllQrCodes'])->name('recipients.printAll');
     Route::resource('recipients', RecipientController::class);
     Route::get('/recipients/{recipient}/qr-code', [RecipientController::class, 'generateQrCode'])->name('recipients.qr-code');
