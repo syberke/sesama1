@@ -1,78 +1,165 @@
 @extends('layouts.app')
 
-@section('title')
-Registrasi
-@endsection
+@section('title', 'Registrasi')
 
 @section('content')
-<div class="container mt-4">
-    <div class="card shadow" style="max-width: 500px;">
-        <div class="card-header">
-            <h5 class="mb-0">Scan QR Code</h5>
-        </div>
-        <div class="card-body">
+<style>
+    .page-header {
+        background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+        border-radius: 15px;
+        padding: 25px;
+        margin-bottom: 30px;
+        color: white;
+    }
+
+    .scan-container {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        margin-bottom: 25px;
+    }
+
+    .form-control {
+        border-radius: 8px;
+        border: 1px solid #e5e7eb;
+        padding: 12px 15px;
+        transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .btn-custom {
+        border-radius: 8px;
+        padding: 12px 25px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .btn-custom:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .result-container {
+        background: #f8fafc;
+        border-radius: 12px;
+        padding: 25px;
+        border: 1px solid #e5e7eb;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 8px;
+    }
+
+    .scan-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #3b82f6, #1e40af);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+    }
+</style>
+
+<div class="page-header">
+    <h2 class="mb-3">Registrasi Bantuan</h2>
+    <p class="mb-0">Scan QR Code untuk verifikasi dan proses registrasi</p>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="scan-container">
+            <div class="text-center mb-4">
+                <div class="scan-icon">
+                    <i class="fas fa-qrcode fa-2x text-white"></i>
+                </div>
+                <h4 class="mb-2">Scan QR Code</h4>
+                <p class="text-muted">Masukkan atau scan kode QR untuk verifikasi registrasi</p>
+            </div>
+
             <form id="verifyForm">
                 @csrf
-                <div class="mb-3">
-                    <label for="qr_code" class="form-label">Masukkan Kode QR</label>
+                <div class="mb-4">
+                    <label for="qr_code" class="form-label">Kode QR</label>
                     <input type="text" name="qr_code" id="qr_code" class="form-control"
                            placeholder="Scan atau ketik kode QR di sini..." autofocus required>
-                    <small class="form-text text-muted">
+                    <small class="form-text text-muted mt-2 d-block">
+                        <i class="fas fa-info-circle me-1"></i>
                         Gunakan scanner atau ketik manual kode QR
                     </small>
                 </div>
-                <button type="submit" class="btn btn-primary btn-sm">
-                    <i class="fas fa-search me-2"></i>Verifikasi
-                </button>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-custom">
+                        <i class="fas fa-search me-2"></i>Verifikasi QR Code
+                    </button>
+                </div>
             </form>
 
             <!-- Hasil scan -->
-            <!-- Hasil scan -->
-<div id="result" class="mt-4" style="display: none;">
-    <h6 class="fw-bold mb-3">Data Penerima</h6>
-    <form id="editForm">
-        @csrf
-        <input type="hidden" name="qr_code" id="edit_qr_code">
+            <div id="result" class="mt-4" style="display: none;">
+                <div class="result-container">
+                    <h5 class="fw-bold mb-4 text-center">
+                        <i class="fas fa-user-check me-2 text-success"></i>
+                        Data Penerima
+                    </h5>
+                    <form id="editForm">
+                        @csrf
+                        <input type="hidden" name="qr_code" id="edit_qr_code">
 
-        <div class="mb-2">
-            <label class="form-label">Nama Anak</label>
-            <input type="text" name="child_name" id="child_name" class="form-control form-control-sm">
-        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Nama Anak</label>
+                                <input type="text" name="child_name" id="child_name" class="form-control">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Nama Ayah</label>
+                                <input type="text" name="Ayah_name" id="Ayah_name" class="form-control">
+                            </div>
+                        </div>
 
-        <div class="mb-2">
-            <label class="form-label">Nama Ayah</label>
-            <input type="text" name="Ayah_name" id="Ayah_name" class="form-control form-control-sm">
-        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Nama Ibu</label>
+                                <input type="text" name="Ibu_name" id="Ibu_name" class="form-control">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Tempat Lahir</label>
+                                <input type="text" name="birth_place" id="birth_place" class="form-control">
+                            </div>
+                        </div>
 
-        <div class="mb-2">
-            <label class="form-label">Nama Ibu</label>
-            <input type="text" name="Ibu_name" id="Ibu_name" class="form-control form-control-sm">
-        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Tanggal Lahir</label>
+                                <input type="date" name="birth_date" id="birth_date" class="form-control">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Nama Sekolah</label>
+                                <input type="text" name="school_name" id="school_name" class="form-control">
+                            </div>
+                        </div>
 
-        <div class="mb-2">
-            <label class="form-label">Tempat Lahir</label>
-            <input type="text" name="birth_place" id="birth_place" class="form-control form-control-sm">
-        </div>
+                        <div class="mb-4">
+                            <label class="form-label">Alamat</label>
+                            <textarea name="address" id="address" class="form-control" rows="3"></textarea>
+                        </div>
 
-        <div class="mb-2">
-            <label class="form-label">Tanggal lahir</label>
-            <input type="date" name="birth_date" id="birth_date" class="form-control form-control-sm">
-        </div>
-
-        <div class="mb-2">
-            <label class="form-label">Nama Sekolah</label>
-            <input type="text" name="school_name" id="school_name" class="form-control form-control-sm">
-        </div>
-
-        <div class="mb-2">
-            <label class="form-label">Alamat</label>
-            <textarea name="address" id="address" class="form-control form-control-sm"></textarea>
-        </div>
-
-        <button type="submit" class="btn btn-success btn-sm mt-2">✅ Simpan & Registrasikan</button>
-    </form>
-</div>
-
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success btn-custom">
+                                <i class="fas fa-check me-2"></i>Simpan & Registrasikan
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -125,6 +212,7 @@ document.getElementById('editForm').addEventListener('submit', function(e) {
         method: 'POST',
         headers: {
             'X-Requested-With': 'XMLHttpRequest'
+            
         },
         body: new FormData(this)
     })

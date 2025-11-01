@@ -223,11 +223,6 @@
                     <td>{{ $recipient->child_name }}</td>
                 </tr>
                 <tr>
-                    <td class="label">Nama Orang Tua</td>
-                    <td class="colon">:</td>
-                    <td>{{ $recipient->parent_name }}</td>
-                </tr>
-                <tr>
                     <td class="label">Tempat, Tanggal Lahir</td>
                     <td class="colon">:</td>
                     <td>{{ $recipient->birth_place }}, {{ $recipient->birth_date->format('d F Y') }}</td>
@@ -317,14 +312,6 @@
         <div class="signature-section">
             <table class="signature-table">
                 <tr>
-                    <td>
-                        <div class="signature-box">
-                            <p><strong>Penerima Bantuan</strong></p>
-                            <div class="signature-line"></div>
-                            <div class="signature-name">{{ $recipient->parent_name }}</div>
-                            <p><small>(Orang Tua/Wali)</small></p>
-                        </div>
-                    </td>
                     <td>
                         <div class="signature-box">
                             <p><strong>Petugas Penyalur</strong></p>

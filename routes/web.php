@@ -8,37 +8,24 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Auth;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
 Auth::routes();
 
-// Public Routes
+// =======================
 Route::get('/', function () {
-    return view('public.home');
-})->name('home');
+    if (Auth::check()) {
+        return redirect()->route('dashboard');
+    }
+    return view('landing');
+})->name('landing');
 
-Route::get('/about', function () {
-    return view('public.about');
-})->name('about');
-
-Route::get('/program', function () {
-    return view('public.program');
-})->name('program');
-
-// Admin Routes
+// =======================
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/home', [DashboardController::class, 'index'])->name('home');
+
     Route::get('/recipients/print-all', [RecipientController::class, 'printAllQrCodes'])->name('recipients.printAll');
     Route::resource('recipients', RecipientController::class);
+
     Route::get('/recipients/{recipient}/qr-code', [RecipientController::class, 'generateQrCode'])->name('recipients.qr-code');
     Route::get('/recipients/{recipient}/qr-print', [RecipientController::class, 'printQrCode'])->name('recipients.qr-print');
     Route::get('/scan', [RecipientController::class, 'scanQr'])->name('recipients.scan');
@@ -47,26 +34,25 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/recipients/{recipient}/receipt', [RecipientController::class, 'generateReceipt'])->name('recipients.receipt');
     Route::get('/recipients/{recipient}/signature', [RecipientController::class, 'generateSignatureForm'])->name('recipients.signature');
     Route::get('/report', [RecipientController::class, 'generateReport'])->name('recipients.report');
+
     Route::get('/recipient/import', [RecipientImportController::class, 'form']);
     Route::post('/recipient/import', [RecipientImportController::class, 'import'])->name('recipients.import');
+
     Route::post('/verify-qr-registration', [RecipientController::class, 'verifyQrRegistration']);
     Route::post('/mark-registered', [RecipientController::class, 'markRegistered']);
+
     Route::get('/registration', function () {
         return view('registration');
     })->name('registration');
-
     Route::post('/registration/verify', [RegistrationController::class, 'verifyRegistrationQr'])->name('registration.verify');
     Route::post('/registration/confirm', [RegistrationController::class, 'confirmRegistration'])->name('registration.confirm');
 });
 
-
-
-Auth::routes();
-
-Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
-
+// =======================
 Route::middleware(['auth', 'user'])->group(function () {
     Route::get('/user', [UserController::class, 'index'])->name('userdashboard');
     Route::get('/list', [UserController::class, 'list'])->name('list');
-
 });
+
+// =======================
+Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');

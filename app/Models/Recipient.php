@@ -14,6 +14,7 @@ class Recipient extends Model
         'child_name',
         'Ayah_name',
         'Ibu_name',
+        'registrasi',
         'birth_place',
         'birth_date',
         'school_level',

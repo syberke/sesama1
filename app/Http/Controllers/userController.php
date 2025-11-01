@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-
     public function index()
     {
         $totalRecipients = Recipient::count();
@@ -33,14 +32,9 @@ class UserController extends Controller
         ));
     }
 
-    public function list(Request $request)
+    public function list()
     {
-        $search = $request->input('search');
-
-        $recipients = Recipient::when($search, function ($query, $search) {
-            $query->where('child_name', 'LIKE', "%{$search}%");
-        })->paginate(20);
-
+        $recipients = Recipient::paginate(20);
         return view('pemantau.list', compact('recipients'));
     }
 }

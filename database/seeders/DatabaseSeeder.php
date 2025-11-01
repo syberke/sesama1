@@ -20,13 +20,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'yusuf',
             'email' => 'yusuf@bansos.com',
             'role' => 'admin', // default user biasa
-            'password' => Hash::make('yusufaja'),
-        ]);
-        User::create([
-            'name' => 'yusuf',
-            'email' => 'yusuf1@bansos.com',
-            'role' => 'user', // default user biasa
-            'password' => Hash::make('yusufaja'),
+            'password' => Hash::make('yusufganteng'),
         ]);
 
 

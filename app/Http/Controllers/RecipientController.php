@@ -69,31 +69,28 @@ class RecipientController extends Controller
 
     public function update(Request $request, Recipient $recipient)
     {
-        // Validasi input
         $validated = $request->validate([
             'qr_code' => 'nullable|string',
             'child_name' => 'required|string|max:255',
-            'Ayah_name' => 'nullable|string|max:255',
-            'Ibu_name' => 'nullable|string|max:255',
-            'birth_place' => 'nullable|string|max:255',
-            'birth_date' => 'nullable|date',
-            'school_level' => 'nullable|string|max:255',
-            'school_name' => 'nullable|string|max:255',
-            'address' => 'nullable|string',
-            'class' => 'nullable|string|max:255',
-            'shoe_size' => 'nullable|string|max:50',
-            'shirt_size' => 'nullable|string|max:50',
-            'uniform_received' => 'boolean',
-            'shoes_received' => 'boolean',
-            'bag_received' => 'boolean',
-            'is_distributed' => 'boolean',
+            'Ayah_name' => 'required|string|max:255',
+            'Ibu_name' => 'required|string|max:255',
+            'birth_place' => 'required|string|max:255',
+            'birth_date' => 'required|date',
+            'school_level' => 'required|string|max:255',
+            'school_name' => 'required|string|max:255',
+            'address' => 'required|string',
+            'class' => 'required|string|max:255',
+            'shoe_size' => 'required|string|max:50',
+            'shirt_size' => 'required|string|max:50',
+            'uniform_received' => 'nullable|boolean',
+            'shoes_received' => 'nullable|boolean',
+            'bag_received' => 'nullable|boolean',
+            'is_distributed' => 'nullable|boolean',
             'distributed_at' => 'nullable|date',
         ]);
 
-        // Update data
         $recipient->update($validated);
 
-        // Redirect balik ke daftar
         return redirect()
             ->route('recipients.index')
             ->with('success', 'Data penerima berhasil diperbarui.');
@@ -309,7 +306,6 @@ class RecipientController extends Controller
                 'recipient' => $recipient,
                 'status' => $recipient->distribution_status
             ]);
-
         } catch (\Exception $e) {
             return response()->json(['error' => 'QR Code tidak valid: ' . $e->getMessage()], 400);
         }
@@ -429,7 +425,6 @@ class RecipientController extends Controller
                 'success' => true,
                 'recipient' => $recipient
             ]);
-
         } catch (\Exception $e) {
             return response()->json(['error' => 'QR Code tidak valid: ' . $e->getMessage()], 400);
         }
@@ -461,11 +456,8 @@ class RecipientController extends Controller
                 'message' => 'Registrasi berhasil disimpan',
                 'recipient' => $recipient
             ]);
-
         } catch (\Exception $e) {
             return response()->json(['error' => 'Gagal memperbarui registrasi: ' . $e->getMessage()], 400);
         }
     }
-
-
 }
