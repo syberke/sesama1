@@ -296,15 +296,23 @@ class RecipientController extends Controller
                 return response()->json(['error' => 'QR Code tidak ditemukan'], 404);
             }
 
-            // Tambahkan pengecekan: harus sudah registrasi
+            // BELUM REGISTRASI
             if (!$recipient->registrasi) {
-                return response()->json(['error' => 'Penerima belum registrasi'], 403);
+                return response()->json([
+                    'error' => 'Penerima belum registrasi'
+                ], 403);
+            }
+
+            // SUDAH PERNAH DISTRIBUSI
+            if ($recipient->is_distributed) {
+                return response()->json([
+                    'error' => 'Penerima sudah menerima bantuan (tidak boleh ambil dua kali)'
+                ], 403);
             }
 
             return response()->json([
                 'success' => true,
-                'recipient' => $recipient,
-                'status' => $recipient->distribution_status
+                'recipient' => $recipient
             ]);
         } catch (\Exception $e) {
             return response()->json(['error' => 'QR Code tidak valid: ' . $e->getMessage()], 400);
@@ -317,6 +325,20 @@ class RecipientController extends Controller
 
     public function distribute(Request $request, Recipient $recipient)
     {
+        if (!$recipient->registrasi) {
+            return response()->json([
+                'success' => false,
+                'error' => 'Penerima belum registrasi'
+            ], 403);
+        }
+
+        if ($recipient->is_distributed) {
+            return response()->json([
+                'success' => false,
+                'error' => 'Penerima sudah menerima bantuan'
+            ], 403);
+        }
+
         try {
             $recipient->update([
                 'is_distributed' => true,
@@ -326,17 +348,15 @@ class RecipientController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'Status penyaluran berhasil diperbarui',
-                'is_fully_distributed' => true,
                 'recipient_id' => $recipient->id
             ]);
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Terjadi kesalahan saat memperbarui data: ' . $e->getMessage()
+                'message' => 'Gagal memperbarui data: ' . $e->getMessage()
             ], 500);
         }
     }
-
 
 
     public function generateReceipt(Recipient $recipient)
@@ -443,11 +463,10 @@ class RecipientController extends Controller
                 return response()->json(['error' => 'QR Code tidak ditemukan'], 404);
             }
 
-            if ($recipient->registered) {
-                return response()->json(['error' => 'Penerima ini sudah terdaftar sebelumnya'], 400);
+            if ($recipient->registrasi) {
+                return response()->json(['error' => 'Penerima sudah registrasi'], 400);
             }
 
-            // Update status registrasi
             $recipient->registrasi = true;
             $recipient->save();
 
@@ -457,7 +476,9 @@ class RecipientController extends Controller
                 'recipient' => $recipient
             ]);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Gagal memperbarui registrasi: ' . $e->getMessage()], 400);
+            return response()->json([
+                'error' => 'Gagal memperbarui registrasi: ' . $e->getMessage()
+            ], 400);
         }
     }
 }

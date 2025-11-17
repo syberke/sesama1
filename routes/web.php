@@ -53,6 +53,21 @@ Route::middleware(['auth', 'user'])->group(function () {
     Route::get('/user', [UserController::class, 'index'])->name('userdashboard');
     Route::get('/list', [UserController::class, 'list'])->name('list');
 });
+Route::get('/tentang-kami', function () {
+    return view('pages.tentang-kami');
+})->name('tentang');
 
+Route::get('/program', function () {
+    return view('pages.program');
+})->name('program');
+Route::get('/zakat', action: function () {
+    return view('pages.zakat');
+})->name('zakat');
+Route::get('/wakaf', action: function () {
+    return view('pages.wakaf');
+})->name(name: 'wakaf');
+Route::get('/kontak', action: function () {
+    return view('pages.kontak');
+})->name(name: 'kontak');
 // =======================
 Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');

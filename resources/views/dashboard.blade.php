@@ -109,7 +109,7 @@
     .stat-card {
         border-radius: 12px;
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        box-shadow: 0 7px 15px rgba(0,0,0,0.06);
         border-left: 4px solid var(--primary-blue);
         animation: fadeInUp 0.6s ease-out;
         animation-fill-mode: both;
@@ -187,20 +187,30 @@
         animation: shimmer 2s infinite;
     }
 
-    .info-box {
-        background: white;
-        border-radius: 12px;
-        padding: 24px;
-        border: 1px solid var(--border-color);
-        animation: slideInLeft 0.6s ease-out;
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    }
+   .info-box {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    border: 1px solid var(--border-color);
 
-    .info-box:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-    }
+    /* Shadow premium */
+    box-shadow:
+        0 6px 12px rgba(0,0,0,0.08),
+        0 12px 24px rgba(0,0,0,0.12),
+        0 18px 32px rgba(0,0,0,0.06) !important;
+
+    animation: slideInLeft 0.6s ease-out;
+    transition: all 0.3s ease;
+}
+
+
+   .info-box:hover {
+    transform: translateY(-6px);
+    box-shadow:
+        0 12px 20px rgba(0,0,0,0.12),
+        0 20px 32px rgba(0,0,0,0.18);
+}
+
 
     .activity-item {
         padding: 16px;

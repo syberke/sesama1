@@ -31,4 +31,44 @@
         </button>
     </form>
 </div>
-</div> @endsection
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    // SUCCESS
+    @if(session('success'))
+        Swal.fire({
+            icon: "success",
+            title: "Berhasil!",
+            text: "{{ session('success') }}",
+            confirmButtonColor: "#3b82f6",
+        });
+    @endif
+
+    // ERROR
+    @if(session('error'))
+        Swal.fire({
+            icon: "error",
+            title: "Gagal!",
+            text: "{{ session('error') }}",
+            confirmButtonColor: "#ef4444",
+        });
+    @endif
+
+    // VALIDATION ERRORS
+    @if ($errors->any())
+        Swal.fire({
+            icon: "warning",
+            title: "Validasi Gagal!",
+            html: `
+                <ul style="text-align:left;">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            `,
+            confirmButtonColor: "#f59e0b",
+        });
+    @endif
+</script>
+@endsection

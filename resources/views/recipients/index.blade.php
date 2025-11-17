@@ -4,164 +4,158 @@
 
 @section('content')
 <style>
-    /* === Banner Header === */
-    .page-header {
-        background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
-        border-radius: 15px;
-        padding: 25px;
-        margin-bottom: 30px;
-        color: white;
-        text-align: left; /* kiriin teks */
-    }
 
-    /* === Kotak Pencarian === */
-    .search-container {
-        background: white;
-        border-radius: 12px;
-        padding: 20px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        margin-bottom: 25px;
-    }
+/* === Banner Header === */
+.page-header {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 28px;
+    color: white;
+    box-shadow: 0 6px 20px rgba(30,64,175,0.25);
+}
 
-    .search-wrapper {
-        position: relative;
-        width: 100%;
-        max-width: 350px;
-    }
+/* === Search Card === */
+.search-container {
+    background: white;
+    border-radius: 16px;
+    padding: 22px;
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.08);
+    margin-bottom: 28px;
+    border: 1px solid #e2e8f0;
+}
 
-    .search-wrapper input {
-        width: 100%;
-        height: 40px;
-        padding: 8px 38px 8px 12px;
-        font-size: 14px;
-        border-radius: 8px;
-        border: 1px solid #e5e7eb;
-    }
+/* Search Box */
+.search-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+}
 
-    .search-wrapper button {
-        position: absolute;
-        right: 6px;
-        top: 50%;
-        transform: translateY(-50%);
-        background: var(--accent-blue);
-        border: none;
-        color: white;
-        border-radius: 6px;
-        width: 28px;
-        height: 28px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: 0.2s;
-    }
+.search-wrapper input {
+    width: 100%;
+    height: 42px;
+    padding: 8px 40px 8px 14px;
+    font-size: 14px;
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    transition: 0.2s;
+}
 
-    .search-wrapper button:hover {
-        background: var(--dark-blue);
-    }
+.search-wrapper input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
+    outline: none;
+}
 
-    .btn-custom {
-        border-radius: 8px;
-        padding: 10px 20px;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        white-space: nowrap;
-    }
+.search-wrapper button {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #2563eb;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
 
-    .btn-custom:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    }
+.search-wrapper button:hover {
+    background: #1e40af;
+}
 
+/* Buttons */
+.btn-custom {
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+.btn-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+/* === Data Table Card === */
+.data-table {
+    background: white;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e2e8f0;
+}
+
+/* FIX DOUBLE SCROLL */
+.data-table > .table-responsive {
+    overflow-x: auto !important;
+    scrollbar-width: thin;
+}
+
+/* Table */
+.table th {
+    background: #f1f5f9;
+    color: #334155;
+    font-weight: 600;
+    border-bottom: 2px solid #e2e8f0;
+    padding: 14px;
+    white-space: nowrap;
+}
+
+.table td {
+    padding: 14px;
+    border-bottom: 1px solid #e2e8f0;
+    vertical-align: middle;
+}
+
+.table tbody tr:hover {
+    background: #f8fafc;
+}
+
+/* Status Badge */
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.status-completed { background: #dcfce7; color: #166534; }
+.status-registered { background: #fef3c7; color: #92400e; }
+.status-pending { background: #fee2e2; color: #991b1b; }
+
+/* Responsive fixes */
+@media (max-width: 768px) {
     .action-buttons {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-        justify-content: flex-end;
+        justify-content: center;
     }
-
-    /* === Table === */
+    .search-wrapper {
+        max-width: 100%;
+    }
     .data-table {
-        background: white;
-        border-radius: 15px;
-        padding: 25px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        overflow-x: auto;
+        padding: 20px;
     }
-
-    .table th {
-        background: #f8fafc;
-        color: #374151;
-        font-weight: 600;
-        border: none;
-        padding: 15px 12px;
-        white-space: nowrap;
+    .table th, .table td {
+        font-size: 13px;
     }
-
-    .table td {
-        padding: 15px 12px;
-        border: none;
-        border-bottom: 1px solid #f1f5f9;
-        vertical-align: middle;
-    }
-
-    .table tbody tr:hover {
-        background: #f8fafc;
-    }
-
-    /* === Status Badge === */
-    .status-badge {
-        padding: 6px 12px;
-        border-radius: 20px;
-        font-size: 0.8rem;
-        font-weight: 600;
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
-        white-space: nowrap;
-    }
-
-    .status-completed { background: #dcfce7; color: #166534; }
-    .status-registered { background: #fef3c7; color: #92400e; }
-    .status-pending { background: #fee2e2; color: #991b1b; }
-
-    /* === Responsive === */
-    @media (max-width: 992px) {
-        .action-buttons {
-            justify-content: center;
-        }
-        .search-wrapper {
-            max-width: 100%;
-        }
-    }
-
-    @media (max-width: 576px) {
-        .page-header h2 {
-            font-size: 1.4rem;
-        }
-        .page-header p {
-            font-size: 13px;
-        }
-
-        /* Hilangkan tulisan “Search” di HP */
-        .search-wrapper button::after {
-            content: "";
-        }
-
-        .search-wrapper button i {
-            margin: 0;
-        }
-
-        .btn-custom {
-            padding: 8px 14px;
-            font-size: 13px;
-        }
-
-        .table th, .table td {
-            font-size: 13px;
-            padding: 10px 8px;
-        }
-    }
+}
 </style>
+
 
 <!-- Banner -->
 <div class="page-header">

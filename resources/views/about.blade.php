@@ -25,90 +25,6 @@
       overflow-x: hidden;
       line-height: 1.6;
     }
-    /* === HEADER / NAVBAR === */
-header {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 18px 60px;
-  z-index: 100;
-  background: transparent;
-  transition: background 0.3s ease, backdrop-filter 0.3s ease;
-}
-
-header.scrolled {
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(6px);
-}
-
-.logo {
-  color: #fff;
-  font-weight: 800;
-  font-size: 22px;
-  letter-spacing: 1px;
-}
-
-nav {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 32px;
-}
-
-.nav-links a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-.nav-links a:hover {
-  color: var(--bazma-gold);
-}
-
-/* === RESPONSIVE NAVBAR === */
-.menu-toggle {
-  display: none;
-  font-size: 28px;
-  color: #fff;
-  cursor: pointer;
-}
-
-@media (max-width: 768px) {
-  header {
-    padding: 16px 24px;
-  }
-
-  .nav-links {
-    position: absolute;
-    top: 70px;
-    right: 0;
-    width: 220px;
-    flex-direction: column;
-    background: rgba(0, 0, 0, 0.9);
-    border-radius: 12px;
-    padding: 20px;
-    gap: 20px;
-    display: none;
-  }
-
-  .nav-links.active {
-    display: flex;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-}
-
 .volunteer-banner {
   position: relative;
   margin: 100px auto;
@@ -191,7 +107,7 @@ nav {
 }
 
 header.scrolled {
-  background: rgba(234, 230, 230, 0.85);
+  background: rgba(0,0,0,0.85);
   backdrop-filter: blur(6px);
 }
 
@@ -465,29 +381,13 @@ header.scrolled {
 </head>
 <body>
   <header>
- <div class="logo">
-  <img src="{{ asset('image/logo.png') }}"
-       alt="Bazma x Pertamina Logo"
-       style="height:60px;width:auto;object-fit:contain;border-radius:6px;
-       onerror="this.onerror=null;this.src='{{ asset('image/foto.png') }}';">
-</div>
-
-
-  <nav>
-    <ul class="nav-links">
-      <li><a href="{{ route('landing') }}">Beranda</a></li>
-      <li><a href="{{ route('tentang') }}">Tentang Kami</a></li>
-      <li><a href="{{ route(name: 'program') }}">Program</a></li>
-      <li><a href="{{ route('zakat') }}">zakat</a></li>
-      <li><a href="{{ route('wakaf') }}">wakaf</a></li>
-      <li><a href="{{ route('kontak') }}">kontak</a></li>
-    </ul>
-    <div class="menu-toggle" id="menu-toggle">
-      ☰
-    </div>
-  </nav>
-</header>
-
+    <div class="logo">BAZMA Pertamina</div>
+    <nav>
+      <a href="#beranda">Beranda</a>
+      <a href="#program">Program</a>
+      <a href="#tentang">Tentang</a>
+    </nav>
+  </header>
 
   <!-- HERO -->
   <section class="hero" id="beranda">
@@ -496,7 +396,7 @@ header.scrolled {
     <div class="slide" style="background-image:url('https://images.pexels.com/photos/6646918/pexels-photo-6646918.jpeg');"></div>
 
     <div class="hero-content">
-      <h1>Berbagi Kebaikan untuk Masa Depan Lebih Cerah</h1>
+      <h1>About</h1>
       <p>Bersama BAZMA Pertamina, wujudkan masa depan Indonesia yang lebih sejahtera melalui pendidikan, kesehatan, dan pemberdayaan masyarakat.</p>
       <div class="hero-stats">
         <div class="stat-item"><span class="stat-number">10K+</span><span class="stat-label">Penerima Manfaat</span></div>
@@ -566,139 +466,28 @@ header.scrolled {
 
   <!-- FOOTER -->
   <footer>
-  <style>
-    footer {
-      background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(8px);
-      color: #f5f5f5;
-      padding: 60px 10%;
-      border-top: 2px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 -3px 20px rgba(255, 255, 255, 0.05);
-      font-family: "Poppins", sans-serif;
-      position: relative;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 40px;
-    }
-
-    .footer-grid h4 {
-      font-size: 1.3rem;
-      color: #ffd700;
-      margin-bottom: 15px;
-      border-left: 4px solid #ffd700;
-      padding-left: 10px;
-    }
-
-    .footer-grid p {
-      color: #e6e6e6;
-      line-height: 1.7;
-      font-size: 0.95rem;
-    }
-
-    .footer-grid a {
-      color: #f1c232;
-      text-decoration: none;
-      font-size: 0.95rem;
-      transition: color 0.3s ease, transform 0.2s ease;
-      display: inline-block;
-      margin: 5px 0;
-    }
-
-    .footer-grid a:hover {
-      color: #fff;
-      transform: translateX(5px);
-    }
-
-    .footer-bottom {
-      text-align: center;
-      margin-top: 50px;
-      padding-top: 25px;
-      border-top: 1px solid rgba(255, 255, 255, 0.2);
-      color: #bbb;
-      font-size: 0.9rem;
-    }
-
-    /* Efek garis dekoratif */
-    footer::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(90deg, #ffd700, transparent, #ffd700);
-      opacity: 0.7;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      footer {
-        padding: 40px 6%;
-      }
-
-      .footer-grid {
-        gap: 30px;
-      }
-
-      .footer-grid h4 {
-        font-size: 1.1rem;
-      }
-    }
-
-    /* Animasi halus saat muncul */
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    footer {
-      animation: fadeUp 1s ease-in-out;
-    }
-  </style>
-
-  <div class="footer-grid">
-    <div>
-      <h4>Tentang Kami</h4>
-      <p>
-        BAZMA Pertamina adalah lembaga filantropi PT Pertamina (Persero) yang
-        bergerak di bidang sosial, pendidikan, kesehatan, dan pemberdayaan
-        masyarakat.
-      </p>
+    <div class="footer-grid">
+      <div>
+        <h4>Tentang Kami</h4>
+        <p>BAZMA Pertamina adalah lembaga filantropi PT Pertamina (Persero) yang bergerak di bidang sosial, pendidikan, kesehatan, dan pemberdayaan masyarakat.</p>
+      </div>
+      <div>
+        <h4>Tautan Cepat</h4>
+        <a href="#beranda">Beranda</a><br>
+        <a href="#program">Program</a><br>
+        <a href="#tentang">Tentang</a>
+      </div>
+      <div>
+        <h4>Kontak</h4>
+        <p>Email: info@bazmapertamina.org</p>
+        <p>Telp: (021) 123-4567</p>
+        <p>Alamat: Jl. Medan Merdeka Timur No.1, Jakarta</p>
+      </div>
     </div>
-
-    <div>
-      <h4>Tautan Cepat</h4>
-      <a href="#beranda">Beranda</a><br />
-      <a href="#program">Program</a><br />
-      <a href="#tentang">Tentang</a>
+    <div class="footer-bottom">
+      &copy; <script>document.write(new Date().getFullYear());</script> BAZMA Pertamina. Semua hak cipta dilindungi.
     </div>
-
-    <div>
-      <h4>Kontak</h4>
-      <p>Email: info@bazmapertamina.org</p>
-      <p>Telp: (021) 123-4567</p>
-      <p>Alamat: Jl. Medan Merdeka Timur No.1, Jakarta</p>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    &copy;
-    <script>
-      document.write(new Date().getFullYear());
-    </script>
-    FABYAP. Semua hak cipta dilindungi.
-  </div>
-</footer>
-
+  </footer>
 
   <script>
     const slides = document.querySelectorAll('.slide');

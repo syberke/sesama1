@@ -4,70 +4,159 @@
 
 @section('content')
 <style>
+/* === HEADER === */
+.page-header {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 35px;
+    color: white;
+    box-shadow:
+        0 10px 20px rgba(0,0,0,0.12),
+        0 15px 30px rgba(0,0,0,0.10);
+}
+
+/* === CARD / CONTAINERS === */
+.scan-container,
+.result-container {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 25px;
+
+    /* SHADOW PREMIUM */
+    box-shadow:
+        0 6px 12px rgba(0, 0, 0, 0.10),
+        0 12px 24px rgba(0, 0, 0, 0.06),
+        0 18px 36px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* === FORM INPUT === */
+.form-control {
+    border-radius: 10px;
+    padding: 12px 14px;
+    border: 1px solid #e5e7eb;
+    font-size: 0.95rem;
+    transition: .25s ease;
+}
+
+.form-control:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
+}
+
+/* === BUTTON === */
+.btn-custom {
+    padding: 12px 28px;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: 0.25s ease;
+}
+
+.btn-custom:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rg<style>
+/* === HEADER === */
+.page-header {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 35px;
+    color: white;
+    box-shadow:
+        0 10px 20px rgba(0,0,0,0.12),
+        0 15px 30px rgba(0,0,0,0.10);
+}
+
+/* === CARD / CONTAINERS === */
+.scan-container,
+.result-container {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 25px;
+
+    /* SHADOW PREMIUM */
+    box-shadow:
+        0 6px 12px rgba(0, 0, 0, 0.10),
+        0 12px 24px rgba(0, 0, 0, 0.06),
+        0 18px 36px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* === FORM INPUT === */
+.form-control {
+    border-radius: 10px;
+    padding: 12px 14px;
+    border: 1px solid #e5e7eb;
+    font-size: 0.95rem;
+    transition: .25s ease;
+}
+
+.form-control:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
+}
+
+/* === BUTTON === */
+.btn-custom {
+    padding: 12px 28px;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: 0.25s ease;
+}
+
+.btn-custom:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+}
+
+/* === ICON CIRCLE === */
+.scan-icon {
+    width: 85px;
+    height: 85px;
+    background: linear-gradient(135deg, #3b82f6, #1e40af);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    box-shadow:
+        0 6px 12px rgba(0,0,0,0.15),
+        0 12px 20px rgba(0,0,0,0.10);
+}
+
+.scan-icon i {
+    font-size: 2rem;
+    color: white;
+}
+
+/* === RESULT BOX === */
+.result-container {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 576px) {
     .page-header {
-        background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
-        border-radius: 15px;
-        padding: 25px;
-        margin-bottom: 30px;
-        color: white;
+        padding: 20px;
+        text-align: center;
     }
-
-    .scan-container {
-        background: white;
-        border-radius: 15px;
-        padding: 30px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        margin-bottom: 25px;
-    }
-
-    .form-control {
-        border-radius: 8px;
-        border: 1px solid #e5e7eb;
-        padding: 12px 15px;
-        transition: all 0.3s ease;
-    }
-
-    .form-control:focus {
-        border-color: #3b82f6;
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-    }
-
-    .btn-custom {
-        border-radius: 8px;
-        padding: 12px 25px;
-        font-weight: 600;
-        transition: all 0.3s ease;
-    }
-
-    .btn-custom:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    }
-
+    .scan-container,
     .result-container {
-        background: #f8fafc;
-        border-radius: 12px;
-        padding: 25px;
-        border: 1px solid #e5e7eb;
+        padding: 22px;
     }
-
-    .form-label {
-        font-weight: 600;
-        color: #374151;
-        margin-bottom: 8px;
+    .btn-custom {
+        width: 100%;
+        font-size: 1rem;
     }
-
     .scan-icon {
-        width: 80px;
-        height: 80px;
-        background: linear-gradient(135deg, #3b82f6, #1e40af);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 20px;
+        width: 70px;
+        height: 70px;
     }
+}
 </style>
+
 
 <div class="page-header">
     <h2 class="mb-3">Registrasi Bantuan</h2>
@@ -177,6 +266,7 @@
 </style>
 
 <script>
+// --- Verifikasi QR ---
 document.getElementById('verifyForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
@@ -186,10 +276,12 @@ document.getElementById('verifyForm').addEventListener('submit', function(e) {
     })
     .then(res => res.json())
     .then(data => {
+
         if (data.success) {
+            showPopup("success", "QR Berhasil Diverifikasi!");
+
             document.getElementById('result').style.display = 'block';
 
-            // Isi form edit
             document.getElementById('edit_qr_code').value = document.getElementById('qr_code').value;
             document.getElementById('child_name').value = data.recipient.child_name;
             document.getElementById('Ayah_name').value = data.recipient.Ayah_name;
@@ -198,41 +290,47 @@ document.getElementById('verifyForm').addEventListener('submit', function(e) {
             document.getElementById('birth_date').value = data.recipient.birth_date;
             document.getElementById('school_name').value = data.recipient.school_name;
             document.getElementById('address').value = data.recipient.address;
+
         } else {
-            alert(data.error);
+            showPopup("error", data.error || "QR tidak valid!");
         }
+
+    })
+    .catch(() => {
+        showPopup("error", "Gagal koneksi ke server!");
     });
 });
 
-// Handle simpan & registrasi
+// --- Submit Registrasi ---
 document.getElementById('editForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
     fetch('http://127.0.0.1:8000/registration/confirm', {
         method: 'POST',
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest'
-            
-        },
+        headers: { 'X-Requested-With': 'XMLHttpRequest' },
         body: new FormData(this)
     })
     .then(res => res.json())
     .then(resp => {
+
         if (resp.success) {
-            alert('Registrasi & Update Berhasil ✅');
-            location.reload();
+            showPopup("success", "Registrasi Berhasil Diperbarui!");
+
+            setTimeout(() => location.reload(), 1500);
+
         } else {
-            alert(resp.error || 'Terjadi kesalahan');
+            showPopup("warning", resp.error || "Terjadi kesalahan!");
         }
+
     })
-    .catch(err => {
-        console.error(err);
-        alert('Gagal mengirim data');
+    .catch(() => {
+        showPopup("error", "Gagal mengirim data ke server!");
     });
 });
-
-
 </script>
+
+
+
 
 
 @endsection

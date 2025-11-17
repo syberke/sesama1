@@ -15,7 +15,7 @@
                 {{ Auth::user()->name ?? 'Admin' }}
             </h5>
             <p class="text-white-50 small mb-0" style="font-size:12px">
-                {{ Auth::user()->email ?? 'admin@ppdb.com' }}
+                {{ Auth::user()->email ?? 'yusuf@bansos.com ' }}
             </p>
         </div>
 
@@ -48,29 +48,67 @@
     </div>
 
     <!-- Bagian Bawah: Branding + Logout -->
-    <div class="sidebar-footer mt-auto pt-3 text-center">
-        <div class="d-flex align-items-center justify-content-center mb-3">
-            <div class="me-2">
-                <img src="{{ asset('image/logo.png') }}" alt="logo"
-                    style="width:40px;height:40px;border-radius:8px;object-fit:cover;"
-                    onerror="this.onerror=null;this.src='{{ asset('image/foto.png') }}';">
-            </div>
-            <div class="text-white text-start">
-                <div class="fw-bold small">SESAMA</div>
-                <div class="text-white-50" style="font-size: 12px;">bazma x pertamina</div>
-            </div>
-        </div>
+   <div class="sidebar-footer mt-auto pt-3 text-center">
+    <style>
+        .footer-logo {
+            height: 40px;         
+            width: auto;
+            max-width: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
 
-        <a class="btn btn-light text-primary fw-bold rounded-pill w-100"
-            href="{{ route('logout') }}"
-            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-            style="font-size: 14px;">
-            Logout
-        </a>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-            @csrf
-        </form>
+        .footer-logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer-text .main-title {
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .footer-text .sub-title {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 11px;
+        }
+
+        .sidebar-footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 15px;
+        }
+    </style>
+
+    <div class="d-flex flex-column align-items-center justify-content-center mb-3">
+        <div class="logo-wrapper mb-2">
+            <img src="{{ asset('image/logo.png') }}" alt="logo"
+                class="footer-logo"
+                onerror="this.onerror=null;this.src='{{ asset('image/foto.png') }}';">
+        </div>
+        <div class="footer-text text-white text-center">
+            <div class="main-title">SESAMA</div>
+            <div class="sub-title">bazma x pertamina</div>
+        </div>
     </div>
+
+    <a class="btn btn-light text-primary fw-bold rounded-pill w-100"
+        href="{{ route('logout') }}"
+        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+        style="font-size: 14px;">
+        Logout
+    </a>
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+        @csrf
+    </form>
+</div>
+
+
 </div>
 <style>
     /* Pastikan sidebar mobile tetap biru */

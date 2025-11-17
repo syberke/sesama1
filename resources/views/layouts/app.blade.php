@@ -7,6 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('Bansos', 'Sistem Bansos Pendidikan') }}</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -179,4 +180,22 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+<script>function showPopup(type, message) {
+    Swal.fire({
+        icon: type,          // success | error | warning | info
+        title: message,
+        confirmButtonText: "OK",
+        confirmButtonColor: type === "success" ? "#16a34a"
+                           : type === "error" ? "#dc2626"
+                           : type === "warning" ? "#f59e0b"
+                           : "#3b82f6",
+        showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+        }
+    });
+}
+</script>
 </html>

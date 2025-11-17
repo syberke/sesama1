@@ -3,10 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BAZMA Pertamina - Program Berbagi Kebaikan</title>
+  <title>Program BAZMA Pertamina - Berbagi Kebaikan</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --bazma-blue: #0071bc;
@@ -25,315 +26,79 @@
       overflow-x: hidden;
       line-height: 1.6;
     }
+
     /* === HEADER / NAVBAR === */
-header {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 18px 60px;
-  z-index: 100;
-  background: transparent;
-  transition: background 0.3s ease, backdrop-filter 0.3s ease;
-}
-
-header.scrolled {
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(6px);
-}
-
-.logo {
-  color: #fff;
-  font-weight: 800;
-  font-size: 22px;
-  letter-spacing: 1px;
-}
-
-nav {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 32px;
-}
-
-.nav-links a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-.nav-links a:hover {
-  color: var(--bazma-gold);
-}
-
-/* === RESPONSIVE NAVBAR === */
-.menu-toggle {
-  display: none;
-  font-size: 28px;
-  color: #fff;
-  cursor: pointer;
-}
-
-@media (max-width: 768px) {
-  header {
-    padding: 16px 24px;
-  }
-
-  .nav-links {
-    position: absolute;
-    top: 70px;
-    right: 0;
-    width: 220px;
-    flex-direction: column;
-    background: rgba(0, 0, 0, 0.9);
-    border-radius: 12px;
-    padding: 20px;
-    gap: 20px;
-    display: none;
-  }
-
-  .nav-links.active {
-    display: flex;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-}
-
-.volunteer-banner {
-  position: relative;
-  margin: 100px auto;
-  width: 90%;
-  max-width: 1400px;
-  height: 400px;
-  background: url('https://images.pexels.com/photos/6646918/pexels-photo-6646918.jpeg') center/cover no-repeat;
-  border-radius: 24px;
-  overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-}
-
-.vol-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(0,113,188,0.9), rgba(0,166,81,0.7));
-  color: #fff;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0 20px;
-}
-
-.vol-overlay h2 {
-  font-size: 40px;
-  font-weight: 800;
-  margin-bottom: 12px;
-}
-
-.vol-overlay h2 span {
-  color: #ffd700;
-}
-
-.vol-overlay p {
-  font-size: 18px;
-  margin-bottom: 28px;
-  opacity: 0.95;
-}
-
-.btn-volunteer {
-  background: #e53935;
-  color: #fff;
-  font-weight: 700;
-  padding: 12px 28px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-size: 16px;
-  transition: all 0.3s ease;
-}
-
-.btn-volunteer:hover {
-  background: #fff;
-  color: #e53935;
-  transform: translateY(-2px);
-}
-
-@media (max-width: 768px) {
-  .volunteer-banner {
-    height: 240px;
-  }
-  .vol-overlay h2 {
-    font-size: 28px;
-  }
-  .vol-overlay p {
-    font-size: 15px;
-  }
-}
-
-    /* HEADER */
-  header {
-  position: fixed;
-  top: 0; left: 0; width: 100%;
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 18px 60px;
-  z-index: 50;
-  background: transparent;
-  transition: background 0.3s ease, backdrop-filter 0.3s ease;
-}
-
-header.scrolled {
-  background: rgba(234, 230, 230, 0.85);
-  backdrop-filter: blur(6px);
-}
-
-
-    .logo {
+    header {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 10px;
-      color: #fff;
-      font-weight: 700;
-      font-size: 20px;
+      padding: 18px 60px;
+      z-index: 100;
+      background: transparent;
+      transition: background 0.3s ease, backdrop-filter 0.3s ease;
     }
 
-    nav {
+    header.scrolled {
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(6px);
+    }
+
+    .logo {
+      color: #fff;
+      font-weight: 800;
+      font-size: 22px;
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      list-style: none;
       display: flex;
       gap: 32px;
     }
-    nav a {
+
+    .nav-links a {
       color: #fff;
       text-decoration: none;
       font-weight: 600;
       transition: color 0.3s ease;
     }
-    nav a:hover {
+
+    .nav-links a:hover {
       color: var(--bazma-gold);
     }
 
-    /* HERO */
-    .hero {
-      position: relative;
-      height: 100vh;
-      min-height: 600px;
-      overflow: hidden;
-    }
-    .slide {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      opacity: 0;
-      transition: opacity 2s ease-in-out;
-    }
-    .slide.active { opacity: 1; }
-    .hero::after {
-      content: "";
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(0,113,188,0.8), rgba(0,166,81,0.7));
-      z-index: 1;
-    }
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
+    .menu-toggle {
+      display: none;
+      font-size: 28px;
       color: #fff;
-      top: 50%;
-      transform: translateY(-50%);
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 20px;
-      animation: fadeInUp 1.2s ease;
-    }
-    .hero-content h1 {
-      font-size: 56px;
-      font-weight: 800;
-      margin-bottom: 24px;
-      text-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-    .hero-content p {
-      font-size: 20px;
-      margin-bottom: 32px;
-      color: #f0f0f0;
+      cursor: pointer;
     }
 
-    .hero-stats {
-      display: flex;
-      justify-content: center;
-      gap: 48px;
-      flex-wrap: wrap;
-      margin-top: 48px;
-    }
-    .stat-item {
-      text-align: center;
-    }
-    .stat-number {
-      font-size: 42px;
-      font-weight: 800;
-      color: var(--bazma-gold);
-    }
-    .stat-label {
-      font-size: 14px;
-      text-transform: uppercase;
+    @media (max-width: 768px) {
+      header { padding: 16px 24px; }
+      .nav-links {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 220px;
+        flex-direction: column;
+        background: rgba(0, 0, 0, 0.9);
+        border-radius: 12px;
+        padding: 20px;
+        gap: 20px;
+        display: none;
+      }
+      .nav-links.active { display: flex; }
+      .menu-toggle { display: block; }
     }
 
-    @keyframes fadeInUp {
-      from {opacity: 0; transform: translateY(40px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
-
-    /* INTRO */
-    .intro {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 120px 60px;
-      gap: 100px;
-      flex-wrap: wrap;
-      background: var(--bg-light);
-    }
-    .intro img {
-      width: 480px;
-      border-radius: 16px;
-      box-shadow: 0 12px 32px rgba(0,0,0,0.12);
-      transition: transform 0.3s ease;
-    }
-    .intro img:hover { transform: scale(1.02); }
-
-    .intro-text {
-      max-width: 640px;
-    }
-    .intro-text h3 {
-      color: var(--bazma-blue);
-      font-weight: 700;
-      font-size: 14px;
-      margin-bottom: 10px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-    }
-    .intro-text h2 {
-      font-size: 42px;
-      font-weight: 800;
-      margin-bottom: 20px;
-    }
-    .intro-text p {
-      color: var(--text-light);
-      font-size: 17px;
-      margin-bottom: 16px;
-    }
-
-    /* PROGRAM */
+    /* === PROGRAM === */
     .program-wrapper {
       text-align: center;
-      padding: 100px 60px;
+      padding: 140px 60px 100px;
       background: #fff;
     }
 
@@ -341,7 +106,9 @@ header.scrolled {
       font-size: 42px;
       font-weight: 800;
       margin-bottom: 16px;
+      color: var(--bazma-blue);
     }
+
     .program-wrapper > p {
       color: var(--text-light);
       margin-bottom: 64px;
@@ -373,29 +140,35 @@ header.scrolled {
       box-shadow: 0 8px 24px rgba(0,0,0,0.12);
       transition: all 0.4s ease;
     }
+
     .program-card::after {
       content: "";
       position: absolute; inset: 0;
       background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.2));
       transition: all 0.4s ease;
     }
+
     .program-card:hover {
       transform: translateY(-8px);
       box-shadow: 0 16px 40px rgba(0,0,0,0.25);
     }
+
     .program-card:hover::after {
       background: linear-gradient(to top, rgba(0,113,188,0.9), rgba(0,166,81,0.4));
     }
+
     .program-content {
       position: relative;
       z-index: 2;
     }
+
     .program-content h5 {
       font-size: 12px;
       letter-spacing: 2px;
       margin-bottom: 10px;
       opacity: 0.9;
     }
+
     .program-content h3 {
       font-size: 24px;
       font-weight: 800;
@@ -413,18 +186,21 @@ header.scrolled {
       text-decoration: none;
       transition: all 0.3s ease;
     }
+
     .btn-login:hover {
       background: var(--bazma-gold);
       color: #000;
       transform: translateY(-2px);
     }
 
-    /* FOOTER */
+    /* === FOOTER === */
     footer {
       background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
       color: #fff;
       padding: 60px 20px;
+      margin-top: 80px;
     }
+
     .footer-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -432,19 +208,58 @@ header.scrolled {
       max-width: 1200px;
       margin: 0 auto 40px;
     }
+
     .footer-grid h4 {
       margin-bottom: 16px;
       font-size: 18px;
       font-weight: 700;
       color: var(--bazma-gold);
     }
+   /* === HERO SECTION === */
+    .hero {
+      position: relative;
+      height: 60vh;
+      background: url('https://images.pexels.com/photos/6646917/pexels-photo-6646917.jpeg') center/cover no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(0,113,188,0.8), rgba(0,166,81,0.7));
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 800px;
+      padding: 0 20px;
+    }
+
+    .hero-content h1 {
+      font-size: 48px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .hero-content p {
+      font-size: 18px;
+      opacity: 0.9;
+    }
+
     .footer-grid p, .footer-grid a {
       color: #ccc;
       font-size: 15px;
       text-decoration: none;
       line-height: 1.8;
     }
+
     .footer-grid a:hover { color: #fff; }
+
     .footer-bottom {
       text-align: center;
       border-top: 1px solid rgba(255,255,255,0.1);
@@ -454,74 +269,47 @@ header.scrolled {
     }
 
     @media (max-width: 768px) {
-      header { padding: 16px 24px; }
-      .hero-content h1 { font-size: 36px; }
-      .hero-content p { font-size: 16px; }
-      .intro { padding: 80px 24px; gap: 48px; }
-      .program-wrapper { padding: 80px 24px; }
+      .program-wrapper { padding: 100px 24px; }
       .program-wrapper h2 { font-size: 32px; }
+       .hero-content h1 { font-size: 36px; }
     }
   </style>
 </head>
+
 <body>
+
+  <!-- HEADER -->
   <header>
- <div class="logo">
+    <div class="logo">
   <img src="{{ asset('image/logo.png') }}"
        alt="Bazma x Pertamina Logo"
        style="height:60px;width:auto;object-fit:contain;border-radius:6px;
        onerror="this.onerror=null;this.src='{{ asset('image/foto.png') }}';">
 </div>
-
-
-  <nav>
-    <ul class="nav-links">
-      <li><a href="{{ route('landing') }}">Beranda</a></li>
-      <li><a href="{{ route('tentang') }}">Tentang Kami</a></li>
-      <li><a href="{{ route(name: 'program') }}">Program</a></li>
+    <nav>
+      <ul class="nav-links" id="nav-links">
+      <ul class="nav-links">
+         <li><a href="{{ route('landing') }}">Beranda</a></li>
+         <li><a href="{{ route('tentang') }}">Tentang Kami</a></li>
+      <li><a href="{{ route(name: 'program') }}  style="color:var(--bazma-gold)">Program</a></li>
       <li><a href="{{ route('zakat') }}">zakat</a></li>
       <li><a href="{{ route('wakaf') }}">wakaf</a></li>
       <li><a href="{{ route('kontak') }}">kontak</a></li>
-    </ul>
-    <div class="menu-toggle" id="menu-toggle">
-      ☰
-    </div>
-  </nav>
-</header>
 
+      </ul>
+      <div class="menu-toggle" id="menu-toggle">☰</div>
+    </nav>
+  </header>
 
-  <!-- HERO -->
-  <section class="hero" id="beranda">
-    <div class="slide active" style="background-image:url('https://images.pexels.com/photos/8613089/pexels-photo-8613089.jpeg');"></div>
-    <div class="slide" style="background-image:url('https://images.pexels.com/photos/5905492/pexels-photo-5905492.jpeg');"></div>
-    <div class="slide" style="background-image:url('https://images.pexels.com/photos/6646918/pexels-photo-6646918.jpeg');"></div>
-
+<section class="hero">
     <div class="hero-content">
-      <h1>Berbagi Kebaikan untuk Masa Depan Lebih Cerah</h1>
-      <p>Bersama BAZMA Pertamina, wujudkan masa depan Indonesia yang lebih sejahtera melalui pendidikan, kesehatan, dan pemberdayaan masyarakat.</p>
-      <div class="hero-stats">
-        <div class="stat-item"><span class="stat-number">10K+</span><span class="stat-label">Penerima Manfaat</span></div>
-        <div class="stat-item"><span class="stat-number">50+</span><span class="stat-label">Program Aktif</span></div>
-        <div class="stat-item"><span class="stat-number">100+</span><span class="stat-label">Mitra</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- INTRO -->
-  <section class="intro" id="tentang">
-    <img src="https://images.pexels.com/photos/6646917/pexels-photo-6646917.jpeg" alt="Program BAZMA Pertamina">
-    <div class="intro-text">
-      <h3>TENTANG KAMI</h3>
-      <h2>Menjembatani Kebaikan untuk Masyarakat</h2>
-      <p>BAZMA Pertamina adalah lembaga filantropi milik Pertamina yang berkomitmen menyalurkan bantuan sosial, pendidikan, dan pemberdayaan ekonomi kepada masyarakat yang membutuhkan.</p>
-      <p>Kami menjunjung tinggi transparansi dan akuntabilitas dalam setiap langkah untuk memastikan setiap bantuan memberi dampak nyata.</p>
+      <h1>Program Unggulan Kami</h1>
+      <p>Berbagai program sosial yang kami jalankan untuk memberikan dampak nyata bagi masyarakat Indonesia.</p>
     </div>
   </section>
 
   <!-- PROGRAM -->
   <section class="program-wrapper" id="program">
-    <h2>Program Unggulan Kami</h2>
-    <p>Berbagai program sosial yang kami jalankan untuk memberikan dampak nyata bagi masyarakat Indonesia.</p>
-
     <div class="program-section">
       <div class="program-card" style="background-image:url('https://images.pexels.com/photos/8465217/pexels-photo-8465217.jpeg');">
         <div class="program-content">
@@ -556,13 +344,6 @@ header.scrolled {
       </div>
     </div>
   </section>
- <section class="volunteer-banner" id="volunteer">
-  <div class="vol-overlay">
-    <h2>Gabung <span>#JadiVolunteer</span></h2>
-    <p>Yuk bergabung dalam setiap program kebaikan Bazma</p>
-    <a href="{{ route('login') }}" class="btn-volunteer">Daftar Volunteer →</a>
-  </div>
-</section>
 
   <!-- FOOTER -->
   <footer>
@@ -699,19 +480,16 @@ header.scrolled {
   </div>
 </footer>
 
-
   <script>
-    const slides = document.querySelectorAll('.slide');
-    let index = 0;
-    setInterval(() => {
-      slides[index].classList.remove('active');
-      index = (index + 1) % slides.length;
-      slides[index].classList.add('active');
-    }, 5000);
-
     const header = document.querySelector('header');
     window.addEventListener('scroll', () => {
       header.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
     });
   </script>
 </body>
