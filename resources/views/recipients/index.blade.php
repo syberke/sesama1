@@ -14,6 +14,38 @@
     color: white;
     box-shadow: 0 6px 20px rgba(30,64,175,0.25);
 }
+/* === Custom Pagination Clean & Minimal === */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+}
+
+.pagination .page-link {
+    padding: 6px 12px !important;
+    border-radius: 8px;
+    font-size: 13px !important;
+    font-weight: 600;
+    border: 1px solid #e5e7eb !important;
+    color: #374151 !important;
+    background: #fff !important;
+    transition: 0.2s;
+}
+
+.pagination .page-item.active .page-link {
+    background: #2563eb !important;
+    color: white !important;
+    border-color: #2563eb !important;
+}
+
+.pagination .page-link:hover {
+    background: #f3f4f6 !important;
+}
+
+.pagination .page-item.disabled .page-link {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
 
 /* === Search Card === */
 .search-container {
@@ -97,11 +129,28 @@
     box-shadow: 0 6px 22px rgba(0, 0, 0, 0.08);
     border: 1px solid #e2e8f0;
 }
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+}
 
 /* FIX DOUBLE SCROLL */
 .data-table > .table-responsive {
     overflow-x: auto !important;
     scrollbar-width: thin;
+}
+/* Fix panah pagination terlalu besar */
+.pagination .page-link {
+    padding: 4px 10px !important;
+    font-size: 12px !important;
+    line-height: 1 !important;
+    border-radius: 6px !important;
+}
+
+.pagination svg {
+    width: 14px !important;
+    height: 14px !important;
 }
 
 /* Table */
@@ -263,8 +312,10 @@
         </table>
     </div>
 
-    <div class="d-flex justify-content-center mt-4">
-        {{ $recipients->links() }}
-    </div>
+  <div class="pagination-container mt-4">
+    {{ $recipients->onEachSide(1)->links('pagination::bootstrap-5')
+}}
+</div>
+
 </div>
 @endsection
