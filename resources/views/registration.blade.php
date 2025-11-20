@@ -1,10 +1,16 @@
 @extends('layouts.app')
 
+
 @section('title', 'Registrasi')
 
+
 @section('content')
+<!-- Pastikan layout kamu sudah memuat Bootstrap / FontAwesome jika belum, tambahkan di layout utama -->
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
+
 <style>
-/* === HEADER === */
+/* --- (CSS kamu, 1x saja) --- */
 .page-header {
     background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
     border-radius: 16px;
@@ -16,22 +22,20 @@
         0 15px 30px rgba(0,0,0,0.10);
 }
 
-/* === CARD / CONTAINERS === */
+
 .scan-container,
 .result-container {
     background: #ffffff;
     border-radius: 16px;
     padding: 32px;
     margin-bottom: 25px;
-
-    /* SHADOW PREMIUM */
     box-shadow:
         0 6px 12px rgba(0, 0, 0, 0.10),
         0 12px 24px rgba(0, 0, 0, 0.06),
         0 18px 36px rgba(0, 0, 0, 0.04) !important;
 }
 
-/* === FORM INPUT === */
+
 .form-control {
     border-radius: 10px;
     padding: 12px 14px;
@@ -40,12 +44,13 @@
     transition: .25s ease;
 }
 
+
 .form-control:focus {
     border-color: #3b82f6;
     box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
 }
 
-/* === BUTTON === */
+
 .btn-custom {
     padding: 12px 28px;
     border-radius: 10px;
@@ -53,64 +58,13 @@
     transition: 0.25s ease;
 }
 
-.btn-custom:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 18px rg<style>
-/* === HEADER === */
-.page-header {
-    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
-    border-radius: 16px;
-    padding: 28px;
-    margin-bottom: 35px;
-    color: white;
-    box-shadow:
-        0 10px 20px rgba(0,0,0,0.12),
-        0 15px 30px rgba(0,0,0,0.10);
-}
-
-/* === CARD / CONTAINERS === */
-.scan-container,
-.result-container {
-    background: #ffffff;
-    border-radius: 16px;
-    padding: 32px;
-    margin-bottom: 25px;
-
-    /* SHADOW PREMIUM */
-    box-shadow:
-        0 6px 12px rgba(0, 0, 0, 0.10),
-        0 12px 24px rgba(0, 0, 0, 0.06),
-        0 18px 36px rgba(0, 0, 0, 0.04) !important;
-}
-
-/* === FORM INPUT === */
-.form-control {
-    border-radius: 10px;
-    padding: 12px 14px;
-    border: 1px solid #e5e7eb;
-    font-size: 0.95rem;
-    transition: .25s ease;
-}
-
-.form-control:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
-}
-
-/* === BUTTON === */
-.btn-custom {
-    padding: 12px 28px;
-    border-radius: 10px;
-    font-weight: 600;
-    transition: 0.25s ease;
-}
 
 .btn-custom:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 18px rgba(0,0,0,0.15);
 }
 
-/* === ICON CIRCLE === */
+
 .scan-icon {
     width: 85px;
     height: 85px;
@@ -125,36 +79,29 @@
         0 12px 20px rgba(0,0,0,0.10);
 }
 
+
 .scan-icon i {
     font-size: 2rem;
     color: white;
 }
 
-/* === RESULT BOX === */
+
 .result-container {
     background: #f9fafb;
     border: 1px solid #e5e7eb;
 }
 
-/* === RESPONSIVE === */
+
 @media (max-width: 576px) {
-    .page-header {
-        padding: 20px;
-        text-align: center;
-    }
-    .scan-container,
-    .result-container {
-        padding: 22px;
-    }
-    .btn-custom {
-        width: 100%;
-        font-size: 1rem;
-    }
-    .scan-icon {
-        width: 70px;
-        height: 70px;
-    }
+    .page-header { padding: 20px; text-align: center; }
+    .scan-container, .result-container { padding: 22px; }
+    .btn-custom { width: 100%; font-size: 1rem; }
+    .scan-icon { width: 70px; height: 70px; }
 }
+
+
+/* small helper */
+.hidden { display: none !important; }
 </style>
 
 
@@ -162,6 +109,7 @@
     <h2 class="mb-3">Registrasi Bantuan</h2>
     <p class="mb-0">Scan QR Code untuk verifikasi dan proses registrasi</p>
 </div>
+
 
 <div class="row justify-content-center">
     <div class="col-lg-8">
@@ -171,12 +119,37 @@
                     <i class="fas fa-qrcode fa-2x text-white"></i>
                 </div>
                 <h4 class="mb-2">Scan QR Code</h4>
-                <p class="text-muted">Masukkan atau scan kode QR untuk verifikasi registrasi</p>
+                <p class="text-muted">Pilih mode: pakai kamera atau masukkan manual</p>
             </div>
 
-            <form id="verifyForm">
+
+            <!-- PILIH MODE -->
+            <div class="text-center mb-4">
+                <button type="button" class="btn btn-primary btn-custom me-2" id="btnCamera">
+                    <i class="fas fa-camera me-2"></i>Scan via Kamera
+                </button>
+
+
+                <button type="button" class="btn btn-secondary btn-custom" id="btnManual">
+                    <i class="fas fa-keyboard me-2"></i>Input Manual
+                </button>
+            </div>
+
+
+            <!-- AREA KAMERA -->
+            <div id="camera-area" class="mb-3 hidden">
+                <div id="reader" style="width: 100%; max-width: 420px; margin: 0 auto;"></div>
+                <p class="text-center text-muted small mt-2">Arahkan kamera ke QR Code</p>
+                <div class="text-center mt-2">
+                    <button type="button" id="btnStopCamera" class="btn btn-sm btn-outline-danger">Stop Kamera</button>
+                </div>
+            </div>
+
+
+            <!-- FORM VERIFIKASI MANUAL -->
+            <form id="verifyForm" class="mt-3">
                 @csrf
-                <div class="mb-4">
+                <div class="mb-4" id="manual-input-wrapper">
                     <label for="qr_code" class="form-label">Kode QR</label>
                     <input type="text" name="qr_code" id="qr_code" class="form-control"
                            placeholder="Scan atau ketik kode QR di sini..." autofocus required>
@@ -192,16 +165,20 @@
                 </div>
             </form>
 
-            <!-- Hasil scan -->
-            <div id="result" class="mt-4" style="display: none;">
+
+            <!-- Hasil scan / form edit -->
+            <div id="result" class="mt-4 hidden">
                 <div class="result-container">
                     <h5 class="fw-bold mb-4 text-center">
                         <i class="fas fa-user-check me-2 text-success"></i>
                         Data Penerima
                     </h5>
+
+
                     <form id="editForm">
                         @csrf
                         <input type="hidden" name="qr_code" id="edit_qr_code">
+
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
@@ -214,6 +191,7 @@
                             </div>
                         </div>
 
+
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Nama Ibu</label>
@@ -224,6 +202,7 @@
                                 <input type="text" name="birth_place" id="birth_place" class="form-control">
                             </div>
                         </div>
+
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
@@ -236,101 +215,233 @@
                             </div>
                         </div>
 
+
                         <div class="mb-4">
                             <label class="form-label">Alamat</label>
                             <textarea name="address" id="address" class="form-control" rows="3"></textarea>
                         </div>
+
 
                         <div class="text-center">
                             <button type="submit" class="btn btn-success btn-custom">
                                 <i class="fas fa-check me-2"></i>Simpan & Registrasikan
                             </button>
                         </div>
+
+
+                        <div class="text-center mt-2">
+                            <small class="text-muted">Status saat ini: <span id="current_status" class="fw-bold">-</span></small>
+                        </div>
                     </form>
                 </div>
             </div>
+
+
         </div>
     </div>
 </div>
 
+
+<!-- Small table style if needed -->
 <style>
-.table th {
-    white-space: nowrap;
-    padding: 4px 8px;
-    font-size: 0.9rem;
-}
-.table td {
-    padding: 4px 8px;
-    font-size: 0.9rem;
-}
+.table th { white-space: nowrap; padding: 4px 8px; font-size: 0.9rem; }
+.table td { padding: 4px 8px; font-size: 0.9rem; }
 </style>
 
+
+<!-- LIB: html5-qrcode -->
+<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+
+
 <script>
-// --- Verifikasi QR ---
-document.getElementById('verifyForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+// helper: show popup (simple)
+function showPopup(type, message) {
+    // kamu bisa ganti dengan toastr/sweetalert; ini sederhana:
+    alert((type || '').toUpperCase() + ": " + (message || ''));
+}
 
-    fetch('http://127.0.0.1:8000/registration/verify', {
-        method: 'POST',
-        body: new FormData(this)
-    })
-    .then(res => res.json())
-    .then(data => {
 
-        if (data.success) {
-            showPopup("success", "QR Berhasil Diverifikasi!");
+// csrf token
+const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-            document.getElementById('result').style.display = 'block';
 
-            document.getElementById('edit_qr_code').value = document.getElementById('qr_code').value;
-            document.getElementById('child_name').value = data.recipient.child_name;
-            document.getElementById('Ayah_name').value = data.recipient.Ayah_name;
-            document.getElementById('Ibu_name').value = data.recipient.Ibu_name;
-            document.getElementById('birth_place').value = data.recipient.birth_place;
-            document.getElementById('birth_date').value = data.recipient.birth_date;
-            document.getElementById('school_name').value = data.recipient.school_name;
-            document.getElementById('address').value = data.recipient.address;
+// DOM refs
+const btnCamera = document.getElementById('btnCamera');
+const btnManual = document.getElementById('btnManual');
+const cameraArea = document.getElementById('camera-area');
+const manualWrapper = document.getElementById('manual-input-wrapper');
+const readerId = 'reader';
+const btnStopCamera = document.getElementById('btnStopCamera');
 
-        } else {
-            showPopup("error", data.error || "QR tidak valid!");
-        }
 
-    })
-    .catch(() => {
-        showPopup("error", "Gagal koneksi ke server!");
-    });
+let scannerInstance = null;
+
+
+// show/hide functions
+function showCamera() {
+    cameraArea.classList.remove('hidden');
+    manualWrapper.classList.add('hidden');
+}
+
+
+function hideCamera() {
+    cameraArea.classList.add('hidden');
+    manualWrapper.classList.remove('hidden');
+}
+
+
+btnCamera.addEventListener('click', () => {
+    showCamera();
+    startCameraScanner();
 });
 
-// --- Submit Registrasi ---
+
+btnManual.addEventListener('click', () => {
+    hideCamera();
+    stopScannerIfAny();
+});
+
+
+// Stop camera button
+btnStopCamera.addEventListener('click', () => {
+    stopScannerIfAny();
+    hideCamera();
+});
+
+
+// START/STOP scanner
+function startCameraScanner() {
+    if (scannerInstance) return;
+
+
+    scannerInstance = new Html5Qrcode(readerId);
+
+
+    scannerInstance.start(
+        { facingMode: "environment" },
+        { fps: 10, qrbox: 250, supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA] },
+        qrMessage => {
+            // ketika terbaca: isi input hidden dan panggil verify otomatis
+            document.getElementById('qr_code').value = qrMessage;
+            stopScannerIfAny();
+            // otomatis verifikasi (sama dengan submit verifyForm)
+            verifyQr(qrMessage);
+        },
+        errorMessage => {
+            // console.debug('scan error', errorMessage);
+        }
+    ).catch(err => {
+        console.error('startCameraScanner error', err);
+        showPopup('error', 'Gagal mengakses kamera. Pastikan izinkan akses kamera pada browser.');
+    });
+}
+
+
+function stopScannerIfAny() {
+    if (!scannerInstance) return;
+    scannerInstance.stop().then(() => {
+        scannerInstance.clear();
+        scannerInstance = null;
+    }).catch(e => {
+        scannerInstance = null;
+    });
+}
+
+
+// VERIFY via fetch (dipanggil dari camera auto atau form manual submit)
+function verifyQr(qrCode) {
+    const fd = new FormData();
+    fd.append('qr_code', qrCode);
+
+
+    fetch('{{ url('/registration/verify') }}', {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': csrfToken,
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        body: fd
+    })
+    .then(r => r.json())
+    .then(data => {
+        if (data.success) {
+            // tampilkan form edit dan isi
+            document.getElementById('result').classList.remove('hidden');
+            document.getElementById('edit_qr_code').value = data.recipient.qr_code || qrCode;
+            document.getElementById('child_name').value = data.recipient.child_name || '';
+            document.getElementById('Ayah_name').value = data.recipient.Ayah_name || '';
+            document.getElementById('Ibu_name').value = data.recipient.Ibu_name || '';
+            document.getElementById('birth_place').value = data.recipient.birth_place || '';
+            document.getElementById('birth_date').value = data.recipient.birth_date || '';
+            document.getElementById('school_name').value = data.recipient.school_name || '';
+            document.getElementById('address').value = data.recipient.address || '';
+            document.getElementById('current_status').innerText = data.recipient.status || '-';
+
+
+            showPopup('success', 'QR Valid! Edit data jika perlu lalu Simpan.');
+        } else {
+            showPopup('error', data.error || 'QR tidak ditemukan pada database.');
+        }
+    })
+    .catch(() => {
+        showPopup('error', 'Gagal koneksi ke server!');
+    });
+}
+
+
+// FORM MANUAL SUBMIT
+document.getElementById('verifyForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const code = document.getElementById('qr_code').value.trim();
+    if (!code) {
+        showPopup('warning', 'Masukkan kode QR terlebih dahulu.');
+        return;
+    }
+    verifyQr(code);
+});
+
+
+// EDIT FORM SUBMIT (simpan & update status -> registered)
 document.getElementById('editForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
-    fetch('http://127.0.0.1:8000/registration/confirm', {
+
+    const form = e.target;
+    const fd = new FormData(form);
+    // pastikan qr_code ada
+    if (!fd.get('qr_code')) {
+        showPopup('warning', 'Tidak ada QR code untuk disimpan.');
+        return;
+    }
+
+
+    fetch('{{ url('/registration/confirm') }}', {
         method: 'POST',
-        headers: { 'X-Requested-With': 'XMLHttpRequest' },
-        body: new FormData(this)
+        headers: {
+            'X-CSRF-TOKEN': csrfToken,
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        body: fd
     })
-    .then(res => res.json())
+    .then(r => r.json())
     .then(resp => {
-
         if (resp.success) {
-            showPopup("success", "Registrasi Berhasil Diperbarui!");
-
-            setTimeout(() => location.reload(), 1500);
-
+            showPopup('success', resp.message || 'Registrasi berhasil.');
+            // update status text
+            document.getElementById('current_status').innerText = 'registered';
+            setTimeout(() => location.reload(), 1200);
         } else {
-            showPopup("warning", resp.error || "Terjadi kesalahan!");
+            showPopup('error', resp.error || 'Gagal memperbarui data.');
         }
-
     })
     .catch(() => {
-        showPopup("error", "Gagal mengirim data ke server!");
+        showPopup('error', 'Gagal koneksi ke server!');
     });
 });
 </script>
 
 
-
-
-
 @endsection
+
+
+
