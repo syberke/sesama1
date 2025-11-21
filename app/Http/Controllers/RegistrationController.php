@@ -37,8 +37,11 @@ class RegistrationController extends Controller
                 'birth_date' => $recipient->birth_date
                     ? \Carbon\Carbon::parse($recipient->birth_date)->format('Y-m-d')
                     : null,
-                'school_name' => $recipient->school_name,
-                'address' => $recipient->address
+                'no_tlp' => $recipient->no_tlp,
+                'reference' => $recipient->reference,
+                'address' => $recipient->address,
+                'wilayah' => $recipient->wilayah,
+
             ]
         ]);
     }
@@ -53,8 +56,10 @@ class RegistrationController extends Controller
             'Ibu_name' => 'nullable|string|max:255',
             'birth_place' => 'nullable|string|max:255',
             'birth_date' => 'required|date',
-            'school_name' => 'nullable|string|max:255',
+            'no_tlp' => 'nullable|string|max:255',
+            'reference' => 'nullable|string|max:255',
             'address' => 'nullable|string|max:500',
+            'wilayah' => 'nullable|string|max:500',
         ]);
 
         $recipient = Recipient::where('qr_code', $request->qr_code)->first();
@@ -73,7 +78,9 @@ class RegistrationController extends Controller
         $recipient->Ibu_name = $request->Ibu_name;
         $recipient->birth_place = $request->birth_place;
         $recipient->birth_date = $request->birth_date;
-        $recipient->school_name = $request->school_name;
+        $recipient->wilayah = $request->wilayah;
+        $recipient->no_tlp = $request->no_tlp;
+        $recipient->reference = $request->reference;
         $recipient->address = $request->address;
         $recipient->registrasi = true;
         $recipient->save();

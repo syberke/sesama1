@@ -17,24 +17,25 @@ class Recipient extends Model
         'registrasi',
         'birth_place',
         'birth_date',
-        'school_level',
-        'school_name',
         'address',
-        'class',
-        'shoe_size',
-        'shirt_size',
-        'uniform_received',
-        'shoes_received',
-        'bag_received',
+        'wilayah',
+        'reference',
+        'no_tlp',
+        'khitan',
+        'uang_bingkisan',
+        'fothobooth',
+        'khitan_received',
+        'uang_bingkisan_received',
+        'fothobooth_received',
         'is_distributed',
         'distributed_at'
     ];
 
     protected $casts = [
         'birth_date' => 'date',
-        'uniform_received' => 'boolean',
-        'shoes_received' => 'boolean',
-        'bag_received' => 'boolean',
+        'khitan_received',
+        'uang_bingkisan_received',
+        'fothobooth_received',
         'is_distributed' => 'boolean',
         'distributed_at' => 'datetime'
     ];

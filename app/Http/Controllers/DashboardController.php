@@ -13,9 +13,9 @@ class DashboardController extends Controller
         $distributedCount = Recipient::where('is_distributed', true)->count();
         $pendingCount = $totalRecipients - $distributedCount;
 
-        $uniformCount = Recipient::where('uniform_received', true)->count();
-        $shoesCount = Recipient::where('shoes_received', true)->count();
-        $bagCount = Recipient::where('bag_received', true)->count();
+        $khitanCount = Recipient::where('khitan_received', true)->count();
+        $uang_bingkisanCount = Recipient::where('uang_bingkisan_received', true)->count();
+        $fothoboothCount = Recipient::where('fothobooth_received', true)->count();
 
         $recentDistributions = Recipient::where('is_distributed', true)
             ->orderBy('distributed_at', 'desc')
@@ -26,9 +26,9 @@ class DashboardController extends Controller
             'totalRecipients',
             'distributedCount',
             'pendingCount',
-            'uniformCount',
-            'shoesCount',
-            'bagCount',
+            'khitanCount',
+            'uang_bingkisanCount',
+            'fothoboothCount',
             'recentDistributions'
         ));
     }
@@ -39,9 +39,9 @@ class DashboardController extends Controller
         $distributedCount = Recipient::where('is_distributed', true)->count();
         $pendingCount = $totalRecipients - $distributedCount;
 
-        $uniformCount = Recipient::where('uniform_received', true)->count();
-        $shoesCount = Recipient::where('shoes_received', true)->count();
-        $bagCount = Recipient::where('bag_received', true)->count();
+        $khitanCount = Recipient::where('khitan_received', true)->count();
+        $uang_bingkisanCount = Recipient::where('uang_bingkisan_received', true)->count();
+        $fothoboothCount = Recipient::where('fothobooth_received', true)->count();
 
         $recentDistributions = Recipient::where('is_distributed', true)
             ->orderBy('distributed_at', 'desc')
@@ -52,9 +52,9 @@ class DashboardController extends Controller
             'totalRecipients',
             'distributedCount',
             'pendingCount',
-            'uniformCount',
-            'shoesCount',
-            'bagCount',
+            'khitanCount',
+            'uang_bingkisanCount',
+            'fothoboothCount',
             'recentDistributions'
         ));
     }

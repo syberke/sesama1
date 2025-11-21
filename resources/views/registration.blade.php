@@ -202,6 +202,16 @@
                                 <input type="text" name="birth_place" id="birth_place" class="form-control">
                             </div>
                         </div>
+                         <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">reference</label>
+                                <input type="text" name="reference" id="reference" class="form-control">
+                            </div>
+                            <div class="col-md-6 mb-3">
+    <label class="form-label">No. Telepon</label>
+    <input type="text" name="no_tlp" id="no_tlp" class="form-control">
+</div>
+                        </div>
 
 
                         <div class="row">
@@ -210,10 +220,11 @@
                                 <input type="date" name="birth_date" id="birth_date" class="form-control">
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Nama Sekolah</label>
-                                <input type="text" name="school_name" id="school_name" class="form-control">
+                                <label class="form-label">Wilayah</label>
+                                <input type="text" name="wilayah" id="wilayah" class="form-control">
                             </div>
                         </div>
+
 
 
                         <div class="mb-4">
@@ -364,6 +375,7 @@ function verifyQr(qrCode) {
     })
     .then(r => r.json())
     .then(data => {
+     console.log('Data dari server:', data);
         if (data.success) {
             // tampilkan form edit dan isi
             document.getElementById('result').classList.remove('hidden');
@@ -371,9 +383,11 @@ function verifyQr(qrCode) {
             document.getElementById('child_name').value = data.recipient.child_name || '';
             document.getElementById('Ayah_name').value = data.recipient.Ayah_name || '';
             document.getElementById('Ibu_name').value = data.recipient.Ibu_name || '';
+            document.getElementById('reference').value = data.recipient.reference || '';
+            document.getElementById('no_tlp').value = data.recipient.no_tlp || '';
+            document.getElementById('wilayah').value = data.recipient.wilayah || '';
             document.getElementById('birth_place').value = data.recipient.birth_place || '';
             document.getElementById('birth_date').value = data.recipient.birth_date || '';
-            document.getElementById('school_name').value = data.recipient.school_name || '';
             document.getElementById('address').value = data.recipient.address || '';
             document.getElementById('current_status').innerText = data.recipient.status || '-';
 
